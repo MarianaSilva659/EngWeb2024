@@ -16,4 +16,4 @@
 
 Fotografia:** 
 
-![Fotografia do aluno](./foto.jpg)
+![Fotografia do aluno](./foto.jpeg)
