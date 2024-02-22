@@ -73,7 +73,11 @@ def paginaRua(nomeRua, imagens, legendas, descricao, casas):
     imagem += "\t\t</div>"
     pagina += imagem
     
+    imagem1 = f'''
+        <img> src="{'imagem1.jpg'}"</img>
+    '''
     
+    pagina += imagem1
     descricao = f'''
         </div>
             <div class="text-justify">
@@ -95,22 +99,7 @@ def paginaRua(nomeRua, imagens, legendas, descricao, casas):
         '''
     
     pagina += casa
-#    templateRua = template
-#    templateRua += f"<h1>{nomeRua}</h1>"
-#
-#    for i in range(0, len(imagens)):
-#        templateRua += (f'<img src="{imagens[i]}" '
-#                        f'alt="{legendas[i]}" '
-#                        f'width="400" '
-#                        f'height="341" >')
-#    templateRua += f"<p><b>Descrição:</b><p>"
-#    
-#    templateRua += f'<p>{descricao}</p>'
-#
-#    templateRua += f'<h6><a href=" ../mapaRuas.html">Voltar a página inicial</a></h6>'
-#    templateRua += "</body>"
-#    templateRua += "</html>"
-#
+
     #aquime meto a informação da rua na sua devida página
     fileRua = open(f"Ruas/{nomeRua}.html", "w", encoding = "utf-8")
     fileRua.write(pagina)
