@@ -66,6 +66,7 @@ def paginaRua(nomeRua, imagens, legendas, descricao, casas):
                 <img src="{figura}" class="w-full rounded-lg"/>
                 <figcaption>{legendas[i]}</figcaption>
                 <h4>Rua atualmente</h4>
+                
                 <img src="{figuraATual}" class="w-full rounded-lg"/>
                 <figcaption>{legendas[i]}</figcaption>
         """
