@@ -135,7 +135,7 @@ var alunosServer = http.createServer((req, res) => {
                 }
                 break
             case "POST":
-                // POST /alunos/edit/:id --------------------------------------------------------------------
+                // POST /compositores/edit/:id --------------------------------------------------------------------
                 if(/\/compositores\/edit\/C[0-9]{2,3}/.test(req.url)){
                     var partes = req.url.split('/')
                     idCompositores = partes[partes.length - 1]
@@ -155,24 +155,25 @@ var alunosServer = http.createServer((req, res) => {
                         }
                     });
                 }
-                else if(/\/compositores\/delete\/C[0-9]{2,3}/.test(req.url)){
-                    var partes = req.url.split('/')
-                    idCompositores = partes[partes.length - 1]
-                    collectRequestBodyData(req, result => {
-                        if(result){
-                            axios.delete('http://localhost:3000/compositores/' + idCompositores, result) // Added colon after "http"
-                                .then(resposta => {
-                                    console.log(JSON.stringify(resposta.data))
-                                    res.writeHead(201, {'Content-Type': 'text/html'});
-                                    res.end(templates.pagCompositor(resposta.data, d));
-                                })
-                                .catch(erro => {
-                                    res.writeHead(520, {'Content-Type': 'text/html'});
-                                    res.end(templates.errorPage(erro, d));
-                                });
-                        }
-                    });
-                }
+                //POST /compositores/delete/:id -----------------------------------------------
+               // else if(/\/compositores\/delete\/C[0-9]{2,3}/.test(req.url)){
+               //     var partes = req.url.split('/')
+               //     idCompositores = partes[partes.length - 1]
+               //     collectRequestBodyData(req, result => {
+               //         if(result){
+               //             axios.delete('http://localhost:3000/compositores/' + idCompositores, result) // Added colon after "http"
+               //                 .then(resposta => {
+               //                     console.log(JSON.stringify(resposta.data))
+               //                     res.writeHead(201, {'Content-Type': 'text/html'});
+               //                     res.end(templates.pagCompositor(resposta.data, d));
+               //                 })
+               //                 .catch(erro => {
+               //                     res.writeHead(520, {'Content-Type': 'text/html'});
+               //                     res.end(templates.errorPage(erro, d));
+               //                 });
+               //         }
+               //     });
+               // }
                 // POST ? -> Lancar um erro
                 else{
                     res.writeHead(404, {'Content-Type': 'text/html'})

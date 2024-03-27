@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    .w3-card-4
+      header.w3-container.w3-pink
+        h1 Compositor #{compositor.id}
+      
+      .w3-container
+        ul.w3-ul.w3-card-4(style="width:50%")
+          li
+            b Nome:
+            |  #{compositor.nome}
+          li
+            b Bibliografia:
+            |  #{compositor.bio}
+          li
+            b Data de Nascimento:
+            |  #{compositor.dataNasc}
+          li
+            b Data de Óbito:
+            |  #{compositor.dataObito}
+          li
+            b Período:
+            |  #{compositor.periodo}
+      
+      footer.w3-container.w3-pink
+        address Gerado por compositores: TPC5 em #{data} - #[a(href="/compositores") Voltar]
