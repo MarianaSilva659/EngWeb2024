@@ -19,7 +19,7 @@ headers = {
     'Content-Type': 'application/json',
 }
 
-def insert_pessoa(data):
+def addPessoa(data):
     endpoint = URL + "/pessoas"
     response = requests.post(endpoint, json=data, headers=headers)
     print(response.text)
@@ -31,7 +31,7 @@ def main():
         with open(path, "r") as f:
             data = json.load(f)
             for pessoa in data["pessoas"]:
-                insert_pessoa(pessoa)
+                addPessoa(pessoa)
 
 if __name__ == "__main__":
     main()

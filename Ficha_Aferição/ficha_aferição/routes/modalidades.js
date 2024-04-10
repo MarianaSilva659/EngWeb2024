@@ -6,7 +6,7 @@ router.get("/", function (req, res, next) {
   Pessoa.listModalidades()
     .then((dados) => res.jsonp(dados))
     .catch((error) =>
-      res.status(500).jsonp({ error: "There was an error with the server" }),
+      res.status(500).jsonp({ error: "Existe um erro no servidor" }),
     );
 });
 
@@ -14,7 +14,7 @@ router.get("/:modalidade", function (req, res, next) {
   Pessoa.listPessoasByModalidade(req.params.modalidade)
     .then((dados) => res.jsonp(dados))
     .catch((error) =>
-      res.status(500).jsonp({ error: "There was an error with the server" }),
+      res.status(500).jsonp({ error: "Existe um erro no servidor" }),
     );
 });
 
