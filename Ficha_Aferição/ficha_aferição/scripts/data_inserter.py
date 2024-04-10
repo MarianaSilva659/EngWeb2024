@@ -7,7 +7,6 @@ import json
 import os
 import time
 
-# URL to the API
 URL = "http://localhost:3000/api"
 
 FILES = [
@@ -18,10 +17,8 @@ FILES = [
 
 headers = {
     'Content-Type': 'application/json',
-    # Add any other necessary headers here
 }
 
-# Insert data into the database
 def insert_pessoa(data):
     endpoint = URL + "/pessoas"
     response = requests.post(endpoint, json=data, headers=headers)

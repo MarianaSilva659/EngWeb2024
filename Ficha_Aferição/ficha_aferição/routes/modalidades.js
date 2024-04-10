@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var Pessoa = require("../controllers/pessoas");
 
-// GET modalidades listing
 router.get("/", function (req, res, next) {
   Pessoa.listModalidades()
     .then((dados) => res.jsonp(dados))
@@ -11,7 +10,6 @@ router.get("/", function (req, res, next) {
     );
 });
 
-// GET pessoa by id
 router.get("/:modalidade", function (req, res, next) {
   Pessoa.listPessoasByModalidade(req.params.modalidade)
     .then((dados) => res.jsonp(dados))
