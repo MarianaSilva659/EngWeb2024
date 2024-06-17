@@ -1,0 +1,40 @@
+version: "3"
+services:
+  ucsinterface:
+    container_name: ucsinterface
+    build: ./Projeto
+    # restart: always
+    environment:
+      - MONGODB_URL=mongodb://mongoserv/EWPROJETO
+      - AUTH=http://localhost:3001/EWPROJETO
+    ports:
+      - "3000:3000"
+    depends_on: # cria um dependência entre serviços, significa que este serviço só inicia depois de iniciar o mongo
+      - ucsauth
+    networks:
+      - ucsnet
+  
+  ucsauth:
+    container_name: ucsauth
+    build: ./AuthServer
+    # restart: always
+    environment:
+      - MONGODB_URL=mongodb://mongoserv/EWPROJETO
+    depends_on:
+      - mongoserv
+    networks:
+      - ucsnet
+
+  mongoserv:
+    container_name: dbucs
+    image: mongo # vai buscar a imagem oficial do mongo
+    networks:
+      - ucsnet
+    volumes:
+      - ./ucs.json:/ucs.json
+      - ./users.json:/users.json
+
+networks:
+  ucsnet:
+    name: ucsnet
+    driver: bridge

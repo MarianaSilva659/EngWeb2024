@@ -1,0 +1,53 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/pages/auth.css')
+    link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+    .modal(id="display")
+    nav.navbar#nav
+      a(href="/")
+      .nav-items
+        if userType == 'admin' 
+          a.retirarLink(href=`/signupProd`)
+            button#botao_adicionar_UC Registar Docente 
+          a.retirarLink(href=`/signupAdmin`)
+            button#botao_adicionar_UC Registar Administrador
+          a.retirarLink(href=`/ucs/adicionarUC`)
+            button#botao_adicionar_UC Adicionar UC
+        a.retirarLink(href=`/ucs`)   
+          button#botao_adicionar_UC Lista de UCs
+        a.retirarLink(href="/logout")
+          button#botao_terminar_sessao Terminar Sessão
+        i.icon_Logout
+    div.w3-padding(id = "login-form-div")
+        h2 Criar Conta para Aluno
+        form(id="login-form" action="/signup" method="post")
+            p
+                .input-text(title="Username")
+                    i.fa-solid.fa-user.fa-lg
+                    input(name="username", type="text", placeholder="Username" ,autofocus ,required)
+            p
+                .input-text(title="Nome")
+                    i.fa-solid.fa-address-card.fa-lg
+                    input(name="name" ,type="text", placeholder="Nome" ,required)
+            p
+                .input-text(title="Email")
+                    i.fa-solid.fa-envelope.fa-lg
+                    input(name="email" ,type="email", placeholder="Email" ,required)
+            p
+                .input-text(title="Password")
+                    i.fa-solid.fa-lock.fa-lg
+                    input.password(name="password", type="password" ,placeholder="Password" ,required )
+                    i.pw-hide.fa-solid.fa-eye-slash.fa-lg(title="Password visibility")
+            p
+                p(style="font-weight:bold; font-size:17px") Selecione as Unidades Curriculares:
+                each uc in ucs
+                    p
+                        input.w3-check(type="checkbox" name="ucs" value=uc._id)
+                        label= uc.titulo
+            p
+            button.w3-button.w3-teal.w3-round.w3-hover.w3-margin(id="formSubmit" type="submit") Criar conta
+        
+        div(id="warning" style="display:none;")
+
+    script(src="/javascripts/signup.js")

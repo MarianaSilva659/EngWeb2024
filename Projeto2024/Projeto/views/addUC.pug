@@ -1,0 +1,111 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+    link(rel='stylesheet', href='/stylesheets/pages/editar.css')
+
+    nav.navbar#nav
+        a(href="/")
+        .nav-items
+          if userType == 'admin' 
+            a.retirarLink(href=`/signup`)
+              button#botao_adicionar_UC Registar  Aluno
+            a.retirarLink(href=`/signupProd`)
+              button#botao_adicionar_UC Registar Docente 
+            a.retirarLink(href=`/signupAdmin`)
+              button#botao_adicionar_UC Registar Administrador
+            a.retirarLink(href=`/ucs/adicionarUC`)
+              button#botao_adicionar_UC Adicionar UC
+          a.retirarLink(href="/ucs")   
+            button#botao_adicionar_UC Lista de UCs
+          a.retirarLink(href="/logout")
+            button#botao_terminar_sessao Terminar Sessão
+
+    .w3-card-4
+        header.w3-container.w3-white
+            h2 Criar Nova Unidade Curricular
+            .separador-header
+
+        if erro
+            .w3-panel.w3-red
+                p= erro
+
+        script.
+            var emails = !{JSON.stringify(emails)};
+
+        form.w3-container(method="POST")
+            fieldset
+                legend Metadados
+                input(type="hidden", name="emails", value=emails)
+
+
+                p(style="font-size: 20px; font-weight:bold;") Nome da Unidade Curricular
+                label(for="sigla") Sigla da UC *
+                input.w3-input.w3-round(type="text", name="sigla", required)
+                label(for="titulo") Título da UC *
+                input.w3-input.w3-round(type="text", name="titulo", required)
+
+                p(style="font-size: 20px; font-weight:bold;") Docentes
+
+                // Campos para o primeiro docente (mantido estático)
+                .docente
+                    label(for="nome") Nome do Docente 
+                    input.w3-input.w3-round(type="text", name="nome", placeholder="Nome do Docente", required)
+
+                    label(for="categoria") Categoria do Docente 
+                    input.w3-input.w3-round(type="text", name="categoria", placeholder="Categoria do Docente")
+
+                    label(for="filiacao") Filiação do Docente 
+                    input.w3-input.w3-round(type="text", name="filiacao", placeholder="Filiação do Docente")
+
+                    label(for="email") Email do Docente 
+                    select.w3-input.w3-round(id="email", name="email", required)
+                        each email in emails
+                            option(value=email) #{email}
+                    
+                    label(for="webpage") Página Web do Docente 
+                    input.w3-input.w3-round(type="text", name="webpage", placeholder="Página Web do Docente")
+
+                // Container para os docentes adicionados dinamicamente
+                #docentes-adicionados
+                    //- Este container será preenchido dinamicamente pelo JavaScript
+
+                // Botão para adicionar mais docentes
+                button#adicionar-docente(type="button", style="margin-top: 10px") Adicionar Docente
+
+                .separador-docente
+                p(style="font-size: 20px; font-weight:bold;") Horário da Unidade Curricular
+                // Campos para horário
+                label(for="teoricas") Aulas Teóricas
+                textarea.w3-input.w3-round(name="teoricas", placeholder="Horários das Aulas Teóricas - Dia da semana, Hora início - Hora fim, Sala", rows="4")
+
+                label(for="praticas") Aulas Práticas
+                textarea.w3-input.w3-round(name="praticas", placeholder="Horários das Aulas Práticas - Dia da semana, Hora início - Hora fim, Sala", rows="4")
+
+                .separador-docente
+                p(style="font-size: 20px; font-weight:bold;") Método de Avaliação da Unidade Curricular
+
+                // Campos para avaliação
+                label(for="avaliacao") Métodos de Avaliação
+                textarea.w3-input.w3-round(name="avaliacao", placeholder="Métodos de Avaliação", rows="4")
+
+                .separador-docente
+                p(style="font-size: 20px; font-weight:bold;") Datas Relevantes da Unidade Curricular
+
+                // Campos para datas importantes
+                label(for="teste") Data do Teste
+                input.w3-input.w3-round(type="text", name="teste", placeholder="Data do Teste - Ano/Mês/Dia; Informação das salas")
+
+                label(for="exame") Data do Exame
+                input.w3-input.w3-round(type="text", name="exame", placeholder="Data do Exame - Ano/Mês/Dia; Informação das salas")
+
+                label(for="projeto") Data do Projeto
+                input.w3-input.w3-round(type="text", name="projeto", placeholder="Data do Projeto - Ano/Mês/Dia; Informação das salas")
+
+            button.w3-btn.w3-teal.w3-mb-2(type="submit", style="margin-top:10px") Registar
+
+        footer.w3-container.w3-ligthgray(style="margin-top:10px")
+            a.retirarLink(href="/ucs")   
+                button#botao_voltar Voltar
+
+    script(src="/javascripts/editarUCJS.js")

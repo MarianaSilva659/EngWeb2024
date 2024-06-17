@@ -1,0 +1,67 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+    link(rel='stylesheet', href='/stylesheets/pages/editar.css')
+
+    nav.navbar#nav
+        a(href="/")
+        .nav-items
+            a.retirarLink(href="/ucs")   
+                button#botao_adicionar_UC Lista de UCs
+            a.retirarLink(href="/logout")
+                button#botao_terminar_sessao Terminar Sessão
+
+    .w3-card-4
+        header.w3-container.w3-white
+            h2 Adicione Novos Docentes 
+            .separador-header
+        
+        if erro
+            .w3-panel.w3-red
+                p= erro
+
+        // Definir variável 'emails' antes de incluir o script
+        script.
+            var emails = !{JSON.stringify(emails)};
+
+        form.w3-container(method="POST")
+            fieldset
+                legend Metadados
+                p(style="font-size: 20px; font-weight:bold;") Docentes
+                input(type="hidden", name="docentes", value=docentes)
+                input(type="hidden", name="emails", value=emails)
+
+                // Campos para o primeiro docente (mantido estático)
+                .docente
+                    label(for="nome") Nome do Docente 
+                    input.w3-input.w3-round(type="text", name="nome", placeholder="Nome do Docente", required)
+
+                    label(for="categoria") Categoria do Docente 
+                    input.w3-input.w3-round(type="text", name="categoria", placeholder="Categoria do Docente")
+
+                    label(for="filiacao") Filiação do Docente 
+                    input.w3-input.w3-round(type="text", name="filiacao", placeholder="Filiação do Docente")
+
+                    label(for="email") Email do Docente 
+                    select.w3-input.w3-round(id="email", name="email", required)
+                        each email in emails
+                            option(value=email) #{email}
+                    
+                    label(for="webpage") Página Web do Docente 
+                    input.w3-input.w3-round(type="text", name="webpage", placeholder="Página Web do Docente")
+
+                // Container para os docentes adicionados dinamicamente
+                #docentes-adicionados
+                    //- Este container será preenchido dinamicamente pelo JavaScript
+
+                // Botão para adicionar mais docentes
+                button#adicionar-docente(type="button", style="margin-top: 10px") Adicionar Docente
+
+            button.w3-btn.w3-teal.w3-mb-2(type="submit", style="margin-top:10px") Registar
+
+        footer.w3-container.w3-ligthgray(style="margin-top:10px")
+            a.retirarLink(href=`/ucs/${idUC}`)   
+                button#botao_voltar Voltar
+
+    script(src="/javascripts/editarUCJS.js")

@@ -1,0 +1,63 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+  link(rel='stylesheet', href='/stylesheets/pages/editar.css')
+
+  nav.navbar#nav
+    a(href="/")
+    .nav-items
+      a.retirarLink(href='/ucs')   
+        button#botao_adicionar_UC Lista de UCs
+      a.retirarLink(href='/logout')
+        button#botao_terminar_sessao Terminar Sessão
+  .w3-card-4
+    header.w3-container.w3-white
+      h2 Altere os campos que desejar abaixo
+      .separador-header
+
+    form.w3-container#docenteForm(method='POST' action=`/ucs/${idUC}/editarDocente/${docente.email}` enctype='multipart/form-data')
+      fieldset
+        legend Metadados
+        input.w3-input.w3-round(type='hidden', name='originalFoto', value=docente.foto)
+        input.w3-input.w3-round(type='hidden', id='hiddenLabel', name='remover', value='0')
+        label(for='nome') Nome
+        input.w3-input.w3-round(type='text', name='nome', value=docente.nome)
+        label(for='foto') Foto
+        if docente.foto
+          img(id='fotoDocente', src=docente.foto, alt='Foto do Docente', style='width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; margin-top: 1%')
+        else
+          img(id='fotoDocente', src='/images/defaultPerfil.png', alt='Foto Padrão', style='width: 100px; height: 100px; border-radius: 50%;')
+        p(style="margin-button: 3%") Selecione nova foto:
+        input.w3-input.w3-round(type='file', name='foto', accept='image/*')
+        label(for='categoria') Categoria
+        input.w3-input.w3-round(type='text', name='categoria', value=docente.categoria)
+        label(for='filiacao') Filiação
+        input.w3-input.w3-round(type='text', name='filiacao', value=docente.filiacao)
+        label(for='email') Email
+        input.w3-input.w3-round(type='text', name='email', value=docente.email, readonly=true)
+        label(for='webpage') WebPage
+        input.w3-input.w3-round(type='text', name='webpage', value=docente.webpage)
+      button.w3-btn.w3-teal.w3-mb-2(type='submit', style='margin-top:10px') Atualizar
+      if permissao == 'admin'
+        button.w3-btn.w3-red.w3-mb-2(type='button', onclick=`deleteDocente('${idUC}', '${docente.email}')`, style='margin-top:10px; margin-left:5px') Eliminar Docente 
+      button.w3-btn.w3-red.w3-mb-2(type='button', id='deleteFotoButton', onclick='deleteFoto()', style='margin-top:10px; margin-left:5px') Eliminar Foto Atual
+
+    footer.w3-container.w3-lightgray(style='margin-top:10px')
+      a.retirarLink(href=`/ucs/${idUC}`)   
+        button#botao_voltar Voltar
+
+  script.
+    function deleteFoto() {
+      event.preventDefault();
+      var label = document.getElementById('hiddenLabel');
+      label.value = 1;
+      var fotoDocente = document.getElementById('fotoDocente');
+      fotoDocente.src = '/images/defaultPerfil.png';
+      var deleteFotoButton = document.getElementById('deleteFotoButton');
+      deleteFotoButton.style.display = 'none';
+    }
+
+    function deleteDocente(idUC, email) {
+      window.location.href = `/ucs/${idUC}/removerDocente/${email}`;
+    }

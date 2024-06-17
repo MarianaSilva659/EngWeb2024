@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/w3.css">
+    <link rel="stylesheet" href="/stylesheets/pages/login.css">
+    <script src="/javascripts/jquery-3.7.1.min.js"></script>
+    <script src="/javascripts/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/jquery.modal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/javascripts/fileManager.js"></script>
+  </head>
+  <body>
+    <link rel="stylesheet" href="/stylesheets/pages/auth.css">
+    <link rel="stylesheet" href="/stylesheets/pages/navBar.css">
+    <div class="modal" id="display"></div>
+    <nav class="navbar" id="nav"><a href="/"></a>
+      <div class="nav-items"><a class="retirarLink" href="/ucs">  
+          <button id="botao_adicionar_UC">Lista de UCs</button></a><a class="retirarLink" href="/logout">
+          <button id="botao_terminar_sessao">Terminar Sessão</button></a><i class="icon_Logout"></i>
+      </div>
+    </nav>
+    <div class="w3-padding" id="login-form-div">
+      <h2>Criar Conta para Docente<i class="fa-solid fa-chalkboard-user w3-padding-small"></i></h2>
+      <form id="login-form" action="/signupProd" method="post">
+        <p>
+          <div class="input-text" title="Username"><i class="fa-solid fa-user fa-lg"></i>
+            <input name="username" type="text" placeholder="Username" autofocus required>
+          </div>
+        </p>
+        <p>
+          <div class="input-text" title="Nome"><i class="fa-solid fa-address-card fa-lg"></i>
+            <input name="name" type="text" placeholder="Nome" required>
+          </div>
+        </p>
+        <p>
+          <div class="input-text" title="Email"><i class="fa-solid fa-envelope fa-lg"></i>
+            <input name="email" type="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$">
+          </div>
+        </p>
+        <p>
+          <div class="input-text" title="Password"><i class="fa-solid fa-lock fa-lg"></i>
+            <input class="password" name="password" type="password" placeholder="Password" required><i class="pw-hide fa-solid fa-eye-slash fa-lg" title="Password visibility"></i>
+          </div>
+        </p>
+        <p></p>
+        <button class="w3-button w3-teal w3-round w3-hover w3-margin" id="formSubmit" type="submit">Criar conta</button>
+      </form>
+      <div id="warning" style="display:none;"></div>
+    </div>
+    <script src="/javascripts/signupDocente.js"></script>
+  </body>
+</html>

@@ -1,0 +1,481 @@
+/*CARD */
+.card {
+  position: relative;
+  width: 100%;
+  /* height: 30vh; REMOVIDO */
+  background-color: #bfc6c7;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto; /* ALTERADO */
+  grid-template-areas: 
+  "tipoAula dataAula"
+  "conteudoAula conteudoAula"
+  "acoesAula acoesAula";
+  margin: 0.5%;
+}
+
+.tipoAula{
+  margin-left: 1%;
+  grid-area: tipoAula;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.dataAula{
+  grid-area: dataAula;
+  margin-left: 85%;
+  margin-top: 0.2%;
+  font-size: 18px;
+}
+
+.conteudoAula{
+  margin-top: 1.5%;
+  margin-left: 1%;
+  grid-area: conteudoAula;
+  font-size: 14px;
+  margin-bottom: 3%;
+}
+
+
+.acoesAula{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  grid-area: acoesAula;
+  margin-top: 13%;
+  margin-left: 91%;
+  justify-content: flex-end;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-areas:
+  "editar eliminar";
+}
+
+.acoesDocente{
+  display: flex;  
+  align-items: center; 
+  margin-top: 4%;
+}
+.acoesDocente button{
+  margin-left: 1px;
+  margin-bottom: 7%;
+}
+
+.acoesAula button{
+  margin-left: 1px;
+  display: inline-block;
+}
+
+.subtitulo{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.subtituloAnexo{
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0.5%;
+}
+
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: calc(
+    100vh - 150px
+  );
+  overflow-y: auto; 
+}
+
+.icon_Nome {
+  display: flex;
+  align-items: center;
+}
+
+/*botão remover left*/
+
+.botao_editarR {
+    color: black; 
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: transparent; 
+    border: none;
+    border-radius: 5px;
+    padding: 1% 0;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+    margin-left: 22%;
+  }
+  
+  .botao_editarR img {
+    width: 22px; 
+    max-width: 100%;
+    height: auto; 
+  }
+  
+  .botao_editarR:hover {
+    color: rgb(255, 0, 0); /* Cor do texto e do ícone ao passar o mouse */
+  }
+  
+  .botao_editarR:hover img {
+    filter: invert(13%) sepia(100%) saturate(7453%) hue-rotate(355deg) brightness(90%) contrast(128%);
+  }
+  
+  .icon_editarR {
+    padding-right: 2mm;
+    font-size: 5px;
+  }
+  
+
+/*botão editar left*/
+.botao_editar {
+  color: black; 
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: transparent; 
+  border: none;
+  border-radius: 5px;
+  padding: 10% 13%;
+  cursor: pointer;
+  transition: background-color 0.3s; 
+  margin-left: 65%;
+  margin-bottom: 0%;
+}
+
+.botao_editar img {
+  margin-left: 3%;
+  width: 22px; 
+  max-width: 100%;
+  height: auto; 
+}
+
+.botao_editar:hover {
+  color: white; /* Cor do texto e do ícone ao passar o mouse */
+}
+
+.botao_editar:hover img {
+  filter: invert(1); /* Inverte a cor do ícone para ficar visível em fundo escuro */
+}
+
+
+.botao_removerDocente {
+  color: black; 
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: transparent; 
+  border: none;
+  border-radius: 5px;
+  padding: 10px 0;  /* Ajustado para alinhar com o botão de edição */
+  cursor: pointer;
+  transition: background-color 0.3s; 
+}
+
+
+.botao_removerDocente img {
+  margin-left: 3px;
+  width: 22px; 
+  max-width: 100%;
+  height: auto; 
+}
+
+.botao_removerDocente:hover {
+  color: white; /* Cor do texto e do ícone ao passar o mouse */
+}
+
+.botao_removerDocente:hover img {
+  filter: invert(1); /* Inverte a cor do ícone para ficar visível em fundo escuro */
+}
+
+
+/*botão editar aula*/
+.botao_editarAula {
+    color: black; 
+    margin-left: 0%;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: transparent; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin-left: 0;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+    margin-left: 220px;
+  }
+
+  .inforAula-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .inforAula {
+    font-size: 25px;
+    color: #3e608c;
+    font-weight: bold;
+    margin-left: 3px;
+    margin-right: 20px;
+  }
+  
+  .botao_editarAula img {
+    margin-left: 3px;
+    width: 22px; 
+    max-width: 100%;
+    height: auto; 
+  }
+  
+  .botao_editarAula:hover {
+    color: rgb(0, 114, 6); /* Cor do texto e do ícone ao passar o mouse */
+  }
+  
+  .botao_editarAula:hover img {
+    filter: invert(24%) sepia(63%) saturate(4532%) hue-rotate(91deg) brightness(95%) contrast(118%);
+}
+
+
+.icon-header {
+  display: flex;
+  align-items: center;
+}
+
+.icon-header img {
+  margin-left: 3px;
+  width: 26px; 
+  max-width: 100%;
+  height: auto; 
+  margin-bottom: 2%;
+}
+
+.icon_editar {
+  padding-right: 2mm;
+  font-size: 5px;
+}
+
+
+.botao_adicionar {
+  color: black; 
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: transparent; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-left: 5px;
+  transition: background-color 0.3s; 
+  margin-left: 10px;
+}
+
+.botao_adicionar img {
+  margin-left: 3px;
+  width: 30px; 
+  max-width: 100%;
+  height: auto; 
+}
+
+
+.horarioCSS {
+  grid-area: "horarioCSS";
+}
+
+
+/*TENHO DE METER AQUI CASO SEJA CLICADO O BOTÃO DO ASIDE */
+
+.nome_UC {
+  font-size: 36px;
+  font-weight: bold;
+  padding-left: 5%;
+}
+
+.info {
+  padding-left: 6%; 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 0%;
+  grid-template-areas: 
+  "nomeUCCSS"
+  "horarioCSS"
+  "datasCSS"
+  "avaliacaoCSS"
+  "docentesCSS";
+}
+
+.nomeUCCSS{
+  grid-area: "nomeUCCSS";
+  word-wrap: break-word;
+  font-size: 18px;
+}
+
+
+.datasCSS{
+  grid-area: "datasCSS";
+}
+
+.avaliacaoCSS{
+  grid-area: "avaliacaoCSS";
+}
+
+.docentesCSS{
+  word-wrap: break-word;
+  grid-area: "docentesCSS";
+}
+
+.titulo{
+  font-weight:bold;
+  font-size: 20px;
+  margin-bottom: 3%;
+}
+
+.tituloUC{
+  font-weight:bold;
+  font-size: 22px;
+}
+
+.hrcolor {
+  border: none;
+  border-top: 2px solid #3e608c;
+}
+
+.retirarLink{
+  text-decoration: none;
+}
+
+/*ABRANGE A PÁGINA TODA*/
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  height: 100%;
+}
+
+
+.subtitulo{
+  font-size: 13.5px;
+  font-weight: bold;
+}
+
+
+/*Card docente*/
+section.cardDocente {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin-left: 10%;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cardDocente svg {
+  fill: #000;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 3px;
+}
+.cardDocente:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px #000000;
+  background-color: #f2f2f2;
+  color: #ffffff;
+}
+
+.card__content {
+  color: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  word-wrap: break-word;
+}
+
+.cardDocente:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  padding-left: 5px;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 700;
+}
+
+.cardDocente:hover svg {
+  scale: 0;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #000000;
+  line-height: 1.4;
+}
+
+
+
+
+/*É A BARRA ESQUERDA */
+.left {
+  display: flex;
+  flex-direction: column;
+  background: #4a7aba;
+  padding: 3% 0 3% 0;
+  width: 20%;
+  height: 100vh;
+  max-height: calc(
+    100vh - 70px
+  );
+  overflow-y: auto; 
+}
+
+/*ONDE FICAM TODOS OS CARDS */
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #f0f2f3;
+  padding: 1% 0 1% 0;
+  flex: 1 1 515.8px;
+}
+.page-template {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.icon_Nome {
+  display: flex;
+  align-items: center;
+}
+
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+

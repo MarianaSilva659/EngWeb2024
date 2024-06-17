@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+  link(rel='stylesheet', href='/stylesheets/pages/editar.css')
+
+  nav.navbar#nav
+    a(href="/")
+    .nav-items
+      a.retirarLink(href='/ucs')   
+        button#botao_adicionar_UC Lista de UCs
+      a.retirarLink(href='/logout')
+        button#botao_terminar_sessao Terminar Sessão
+  .w3-card-4
+    header.w3-container.w3-white
+      h2 Insira o zip com os ficheiros ucs.json e/ou users.json e/ou pasta images com as imagens. Importante notar que não é aconselhada a inserção de dados relativos a utilizadores já existentes
+      .separador-header
+
+    form.w3-container#docenteForm(method='POST' action=`/importarDB` enctype='multipart/form-data')
+      fieldset
+        legend Metadados
+        label(for='file') Ficheiro
+        p(style="margin-button: 3%") Selecione o zip:
+        input.w3-input.w3-round(type='file', name='file', accept='application/zip')
+      button.w3-btn.w3-teal.w3-mb-2(type='submit', style='margin-top:10px') Inserir
+
+    footer.w3-container.w3-lightgray(style='margin-top:10px')
+      a.retirarLink(href= urlAnterior ? urlAnterior : '/ucs')   
+        button#botao_voltar Voltar

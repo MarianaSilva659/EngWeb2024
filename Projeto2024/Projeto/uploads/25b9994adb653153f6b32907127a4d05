@@ -1,0 +1,145 @@
+<world>
+    <window width="1920" height="1080" />
+    <camera>
+        <position x="60" y="70" z="110" />
+        <lookAt x="0" y="0" z="0" />
+        <up x="0" y="1" z="0" />
+        <projection fov="30" near="1" far="1000" />
+    </camera>
+
+    <lights> 
+		<light type="point" posX="0" posY="0" posZ="0" />
+	</lights>
+
+    <group>
+        <group>
+            <transform>
+                <scale x="20" y="20" z="20"/> <!-- Tamanho do Sol -->
+            </transform>
+            <models>
+                <model file="planet.3d"> <!-- Sol -->
+                    <texture file="sun.jpg"/>
+                    <color>
+                        <emissive R="255" G="255" B="255"/>
+                    </color>
+                </model>
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="24" y="0" z="0"/>
+            </transform>
+            <models>
+                <model file="planet.3d"> <!-- Mercúrio -->
+                    <texture file="mercury.jpg"/>
+                </model>
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="29" y="0" z="0"/>
+                <scale x="1.2" y="1.2" z="1.2"/> <!-- Tamanho de Vénus -->
+            </transform>
+            <models>
+                <model file="planet.3d"> <!-- Vénus -->
+                    <texture file="venus.jpg"/>
+                </model>
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="34" y="0" z="0"/>
+            </transform>
+            <group>
+                <transform>
+                    <scale x="1.2" y="1.2" z="1.2"/> <!-- Tamanho da Terra -->
+                </transform>
+                <models>
+                    <model file="planet.3d"> <!-- Terra -->
+                        <texture file="earth.jpg"/>
+                    </model>
+                </models>
+            </group>
+            <group>
+                <transform>
+                    <translate x="0" y="0" z="2"/> <!-- Distância da Lua à Terra -->
+                    <scale x="0.3" y="0.3" z="0.3"/> <!-- Tamanho da Lua -->
+                </transform>
+                <models>
+                    <model file="planet.3d"> <!-- Lua -->
+                        <texture file="moon.jpg"/>
+                    </model>
+                </models>
+            </group>
+        </group>
+        <group>
+            <transform>
+                <translate x="39" y="0" z="0"/>
+            </transform>
+            <models>
+                <model file="planet.3d"> <!-- Marte -->
+                    <texture file="mars.jpg"/>
+                </model>
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="49" y="0" z="0"/>
+                <scale x="6" y="6" z="6"/> <!-- Tamanho de Júpiter -->
+            </transform>
+            <models>
+                <model file="planet.3d" > <!-- Júpiter -->
+                    <texture file="jupiter.jpg"/>
+                </model>
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="66" y="0" z="0"/>
+            </transform>
+            <group>
+                <transform>
+                    <scale x="5" y="5" z="5"/> <!-- Tamanho de Saturno -->
+                </transform>
+                <models>
+                    <model file="planet.3d"> <!-- Saturno -->
+                        <texture file="saturn.jpg"/>
+                    </model>
+                </models>
+            </group>
+            <group>
+                <transform>
+                    <rotate angle ="20" x="1" y="0" z="1"/> <!-- Ângulo de rotação do anel de Saturno -->
+                    <scale x="2" y="2" z="2"/> <!-- Tamanho do Anel -->
+                </transform>
+                <models>
+                    <model file="ring.3d"> <!-- Anel de Saturno -->
+                        <texture file="ring.jpg"/>
+                    </model>
+                </models>
+            </group>
+        </group>
+        <group>
+            <transform>
+                <translate x="80" y="0" z="0"/>
+                <scale x="3" y="3" z="3"/> <!-- Tamanho de Úrano -->
+            </transform>
+            <models>
+                <model file="planet.3d"> <!-- Úrano -->
+                    <texture file="uranus.jpg"/>
+                </model>
+            </models>
+        </group>
+        <group>
+            <transform>
+                <translate x="90" y="0" z="0"/>
+                <scale x="3" y="3" z="3"/> <!-- Tamanho de Neptuno -->
+            </transform>
+            <models>
+                <model file="planet.3d"> <!-- Neptuno -->
+                    <texture file="neptune.jpg"/>
+                </model>
+            </models>
+        </group>
+    </group>
+</world>

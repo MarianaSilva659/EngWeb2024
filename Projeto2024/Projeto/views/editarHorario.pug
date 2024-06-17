@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+    link(rel='stylesheet', href='/stylesheets/pages/editar.css')
+
+    nav.navbar#nav
+        a(href="/")
+        .nav-items
+          a.retirarLink(href="/ucs")   
+            button#botao_adicionar_UC Lista de UCs
+          a.retirarLink(href="/logout")
+            button#botao_terminar_sessao Terminar Sessão
+
+    .w3-card-4
+      header.w3-container.w3-white
+        h2 Edite o horário das aulas da #{idUC}
+        .separador-header
+      
+      form.w3-container(method="POST")
+        fieldset
+          legend Horários
+          label(for="teoricas") Aulas Teóricas
+          textarea.w3-input.w3-round(name="teoricas", style="height:70px", placeholder="Dia da semana, Hora início - Hora fim, Sala")= horario.teoricas.join('\n')
+          label(for="praticas") Aulas Práticas
+          textarea.w3-input.w3-round(name="praticas", style="height:170px", placeholder="Dia da semana, Hora início - Hora fim, Sala")= horario.praticas.join('\n')
+
+        button.w3-btn.w3-teal.w3-mb-2(type="submit", style="margin-top:10px") Atualizar
+      
+      footer.w3-container.w3-ligthgray(style="margin-top:10px")
+        a.retirarLink(href=`/ucs/${idUC}`)   
+          button#botao_voltar Voltar

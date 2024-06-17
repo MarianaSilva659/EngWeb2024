@@ -1,0 +1,197 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/pages/pagUC.css')
+  link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+  .modal(id="display")
+  nav.navbar#nav
+    a(href="/")
+    .nav-items
+      a.retirarLink(href=`/ucs`)   
+        button#botao_adicionar_UC Lista de UCs
+      a.retirarLink(href="/logout")
+        button#botao_terminar_sessao Terminar Sessão
+      i.icon_Logout
+
+  .page-template
+    Navbar
+    .main
+      aside.left
+        p.nome_UC= sigla
+        .info
+          .nomeUCCSS
+            p.tituloUC= nomeUC
+          hr.hrcolor
+          .horarioCSS
+            .icon-header
+              img(src="/images/horario.png", alt="Horário Icon", style="margin-right: 2.5%;")
+              p.titulo Horário da UC:
+            if horario.teoricas && horario.teoricas.length > 0
+              p.subtitulo Aulas Teóricas:
+              each t in horario.teoricas
+                p= t
+            else
+              p.subtitulo Aulas Teóricas:
+              p Indisponível
+            if horario.praticas && horario.praticas.length > 0 
+              p.subtitulo Aulas Práticas:
+              each p in horario.praticas 
+                p= p
+            else
+              p.subtitulo Aulas Práticas:
+              p Indisponível
+            if userType == 'admin' || userType == 'prod'
+              a.retirarLink(href=`/ucs/${idUC}/horario`)
+                button.botao_editar
+                  span Editar
+                  img.icon_editar(src="/images/canetaEditar.png")
+            hr.hrcolor(style="margin-top: 0; margin-bottom: 5px;")
+          .datasCSS
+            .icon-header
+                img(src="/images/datas.png", alt="Horário Icon", style="margin-right: 2.5%;")
+                p.titulo Datas Relevantes:
+            p
+              if datas.teste == "???" || datas.teste == "Ano/Mês/Dia" || datas.teste == ''
+                p 
+                  strong Teste:
+                  |  Data ainda não definida
+              else 
+                p 
+                  strong Teste:
+                  |  #{datas.teste}
+
+              if datas.exame == "???" || datas.exame == "Ano/Mês/Dia" || datas.exame == '' 
+                p 
+                  strong Exame:
+                  |  Data ainda não definida
+              else
+                p 
+                  strong Exame:
+                  |  #{datas.exame}
+              if datas.projeto == "???" || datas.projeto == "Ano/Mês/Dia" || datas.projeto == ''
+                p 
+                  strong Projeto:
+                  |  Data ainda não definida
+              else
+                p 
+                  strong Projeto:
+                  |  #{datas.projeto}
+            if userType == 'admin' || userType == 'prod'
+              a.retirarLink(href=`/ucs/${idUC}/datas`)  
+                button.botao_editar
+                  span Editar
+                  img.icon_editar(src="/images/canetaEditar.png")
+            hr.hrcolor
+          .avaliacaoCSS
+              .icon-header
+                img(src="/images/avaliacao.png", alt="Horário Icon", style="margin-right: 2.5%;")
+                p.titulo Estratégia de avaliação:
+              p 
+                if avaliacao.length > 0
+                    each avalia in avaliacao
+                      li= avalia
+                else
+                  p Ainda sem informação
+              if userType == 'admin' || userType == 'prod'
+                a.retirarLink(href=`/ucs/${idUC}/avaliacao`)
+                  button.botao_editar
+                    span Editar
+                    img.icon_editar(src="/images/canetaEditar.png")
+              hr.hrcolor
+          .docentesCSS
+            .icon-header
+              img(src="/images/docente.png", alt="Horário Icon", style="margin-right: 2.5%;")
+              p.titulo Docentes
+              if userType == 'admin' 
+                a.retirarLink(href=`/ucs/${idUC}/adddocente`)
+                  button.botao_editar(style="margin-left: 75%; fon" )
+                    p Adicionar Docente
+                    img.icon_editar(src="/images/adicionar.png")  
+            each docente in docentes
+              section#card1.cardDocente
+                img(src= docente.foto, alt="Foto do Docente", style="width: 100%; height: auto; border-radius: 10px;")                
+                .card__content
+                  p.card__title= docente.nome
+                  p.card__description
+                    strong Categoria:
+                    | #{docente.categoria ? docente.categoria : 'Indisponível'}
+                  p.card__description
+                    strong Filiação:
+                    | #{docente.filiacao ? docente.filiacao : 'Indisponível'}
+                  p.card__description
+                    strong Email:
+                    | #{docente.email ? docente.email : 'Indisponível'}
+                  p.card__description
+                    strong WebPage:
+                    if docente.webpage
+                      a(href=`${docente.webpage}`, target="_blank")= docente.webpage
+                    else
+                      | Indisponível
+              .acoesDocente 
+                if userType == 'admin'
+                  a.retirarLink(style="margin-left: 55%" href=`/ucs/${idUC}/removerdocente/${docente.email}`)
+                    button.botao_removerDocente
+                      span Remover
+                      img.icon_editar(src="/images/remover.png")
+                if userType == 'admin' 
+                  a.retirarLink(href=`/ucs/${idUC}/editarDocente/${docente.email}`)
+                    button.botao_editar
+                      span Editar
+                      img.icon_editar(src="/images/canetaEditar.png")
+                else if userType == 'prod' && emailUser == docente.email
+                  a.retirarLink(style="margin-left: 75%" href=`/ucs/${idUC}/editarDocente/${docente.email}`)
+                    button.botao_editar
+                      span Editar
+                      img.icon_editar(src="/images/canetaEditar.png")
+            
+      main
+        .inforAula-container
+          p.inforAula Informação referente às aulas
+          if error
+            .w3-panel(style="font-size: 20px; color:red")
+              p#erroMensagem= error
+          if userType == 'admin' || userType == 'prod'
+            a.retirarLink(href=`/ucs/${idUC}/aula/add`)
+              button.botao_adicionar
+                img.icon_adicionar(src="/images/adicionar.png")
+                span Adicionar Aula
+        .card-container
+          if aulas.length === 0
+            p(style="  font-weight: bold; margin-top: 10%; margin-left: 30%; font-size:25px;") Unidade Curricular ainda sem aulas...
+          else
+            each aula in aulas
+              .card
+                if aula.tipo == "T"
+                  .tipoAula Aula Teórica
+                else if aula.tipo == "P"
+                  .tipoAula Aula Prática
+                .dataAula= aula.data
+                .conteudoAula
+                  if aula.sumario.length > 0
+                    p.subtitulo(style="font-size: 16px; font-weight: bold;") Sumário:
+                    ul.sumario
+                      each sum in aula.sumario
+                        if sum.length > 0
+                          li= sum
+                        else
+                          p Sem súmario.
+                  if aula.anexos.length > 0
+                    p.subtituloAnexo Anexos:
+                    table.w3-table-all 
+                      tr 
+                        th Ficheiro disponíveis:
+                      each anexo in aula.anexos
+                        tr(onclick='showImage(\"' + anexo + '\", \"' + aula._id + '\")')
+                          td= anexo
+                .acoesAula
+                  if userType == 'admin' || userType == 'prod'
+                    a.retirarLink(href=`/ucs/${idUC}/aula/editar/${aula._id}`)
+                      button.botao_editarAula
+                        span Editar
+                        img.icon_editar(src="/images/canetaEditar.png")
+                    a.retirarLink(href=`/ucs/${idUC}/aula/remover/${aula._id}`)
+                      button.botao_editarR
+                        span Remover
+                        img.icon_editar(src="/images/remover.png")
+
+  script(src="/javascripts/pagUC.js")

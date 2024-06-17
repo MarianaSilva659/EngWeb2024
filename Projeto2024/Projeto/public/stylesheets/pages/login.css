@@ -1,0 +1,86 @@
+body {
+    background-color: #f9f9f9;
+  }
+
+.geral {
+    height: 104vh;
+    width: 100vw;
+    position: fixed;
+  }
+  
+  .login-logo img {
+    display: flex;
+    width: 55vw;
+    height: auto;
+    margin: 0 auto;
+    z-index: 1;
+  }
+  
+  .login-logo span{
+    display: flex;
+    color: #FF3434;
+    margin-left: 36.75vw;
+    margin-top: 3vh;
+    margin-bottom: 1vb;
+    font-weight: bold;
+    font-size: 1rem;
+    z-index: 2;
+  }
+  
+  .form{
+    width: 26.5vw;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  .form input {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 2%;
+    color: #000;
+    background: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s ease-in;
+    border: 2px solid #e6deff;
+    padding: 2%;
+  }
+  
+  .form input::placeholder{
+    color: #072a57;
+  }
+  
+  .form input:hover,
+  .form input:focus {
+    box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 5%);
+    background-color: white;
+  }
+  
+  .form button {
+    margin-left: 64.96%;
+    display: block;
+    padding: 2%;
+    width: 40%;
+    height: 83.78%;
+    font-weight: bold;
+    background-color: #4886D9;
+    color: white;
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 0.5% 0.25% -0.375px;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .form button:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+  }
+  
+  .form button:active {
+    transform: scale(0.95);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+  }
+  
+  y

@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/pages/navBar.css')
+  link(rel='stylesheet', href='/stylesheets/pages/pagUCS.css')
+  .modal(id="display")
+  nav.navbar#nav
+    a(href="/")
+    .nav-items
+      if userType == 'admin' 
+        a.retirarLink(href=`/exportarDB`)
+          button#botao_adicionar_UC Exportar
+        a.retirarLink(href=`/importarDB`)
+          button#botao_adicionar_UC Importar
+        a.retirarLink(href=`/signup`)
+          button#botao_adicionar_UC Registar  Aluno
+        a.retirarLink(href=`/signupProd`)
+          button#botao_adicionar_UC Registar Docente 
+        a.retirarLink(href=`/signupAdmin`)
+          button#botao_adicionar_UC Registar Administrador
+        a.retirarLink(href=`/ucs/adicionarUC`)
+          button#botao_adicionar_UC Adicionar UC
+      a.retirarLink(href="/logout")
+        button#botao_terminar_sessao Terminar Sessão
+
+  .page-template(style="margin-top: 1%")
+    .header-container(style="display: flex; justify-content: space-between; align-items: center;")
+      h2(style="font-weight: bold; margin-left: 0.5%;") Unidades Curriculares:
+      form(action="/ucs/search" method="GET" style="display: flex; align-items: center;  margin-right: 10%")
+        .group(style="position: relative; display: flex; align-items: center; ")
+          svg.icon(viewBox="0 0 24 24", aria-hidden="true", class="icon", style="position: absolute; left: 10px; width: 20px; height: 20px; fill: gray;")
+            g
+              path(d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z")
+          input.input(type="text", name="search", placeholder="Pesquisar UCs...", style="padding: 5px 10px 5px 35px; font-size: 16px; width: 250px; border: 1px solid gray; border-radius: 5px;")
+          button(type="submit", style="padding: 5px 10px; font-size: 16px; margin-left: 10px; border: none; background-color: #3e608c; color: white; border-radius: 5px; cursor: pointer;") Pesquisar
+
+    table.w3-table-all(style="margin-top: 1%")
+      thead
+        tr.w3-blue-gray(style="font-size: 20px")
+          th Sigla da UC
+          th Unidade Curricular
+          if userType == 'admin'
+            th Ações
+      tbody
+        each uc in ucs
+          if userType == 'admin' || ucsUser.includes(uc._id)
+            tr.w3-hover-gray(style="cursor: pointer;" onclick=`location.href='/ucs/${uc._id}'`)
+              td(style="font-size: 20px")= uc.sigla
+              td(style="font-size: 20px")= uc.titulo
+              if userType == 'admin'
+                td
+                  a.w3-btn.w3-red.w3-margin-left.w3-margin-bottom.w3-round.transition(href=`ucs/remover/${uc._id}`) Remover
+                    i.w3-margin-left.fa-solid.fa-trash

@@ -1,0 +1,62 @@
+/*NavBar*/
+#botao_adicionar_UC {
+    background-color: #3e608c;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .retirarLink{
+    text-decoration: none;
+  }
+  #botao_adicionar_UC:hover {
+    background-color: #2b4d73;
+  }
+  
+
+  
+  #botao_terminar_sessao {
+    padding: 6px;
+    background-color: #3e608c;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  #botao_terminar_sessao:hover {
+    background-color: #2b4d73;
+  }
+  
+  #nav {
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+    background-color: #3e608c;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  }
+  
+  .nav-items {
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+  }
+  
+  .nav-items i {
+    margin-left: 10px;
+  }
+  
+  .nav-items:hover a,
+  .nav-items:hover i {
+    color: #2b4d73;
+  }

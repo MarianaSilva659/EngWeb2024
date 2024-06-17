@@ -1,0 +1,57 @@
+json-server --watch <jsonFile> -> correr um jsonFile com json-server
+
+sudo npm install axios -> importar modulo axios para um determinado projeto 
+
+sudo npm install mongoose --save -> importar modulo mongoose para um determinado projeto
+
+sudo npm install multer jsonfile --save -> importar modulos multer e jsonfile para um determinado projeto
+
+
+EXPRESS:
+    npx express-generator --view=pug <dirName>
+    cd <dirName>
+    npm i
+    npm start
+    DEBUG=teste:* npm start -> Corre em modo debug
+
+
+Docker:
+    docker build -t <fileName>
+    docker images
+    docker logs <containerName>
+    docker ps -a 
+    docker start <containerName>
+    docker stop <containerName>
+    docker rm <containerName>
+    docker pull mongo
+    docker run -d -p 27017:27017 --name <mongoName> mongo
+    docker cp <jsonFile> <containerName>:/tmp -> copia o jsonFile para o container
+    docker cp <containerName>:<jsonFile> . -> copia o jsonFile para fora do container
+
+
+MongoDB:
+    docker exec -it <mongoName> bash
+    mongoimport -d <jsonFile> -c <jsonFile> /tmp/<jsonFile>.json --jsonArray -> importa o jsonFile para o /tmp como database
+    mongoexport --db=<dataBase> --collection=<collection> --out=<jsonFile> --jsonArray --pretty -> exporta a collection de uma database para o jsonFile
+
+    docker exec -it <mongoName> mongosh
+    show dbs -> Mostra as databases
+    use <database> -> Utiliza a database
+    show collections -> Mostra as collections da database
+    db.dropDatabase() -> Drop da database
+
+    exit -> Sair do mongoDB
+
+
+MongoDB querys:
+    db.<dataset>.find({_id:<id>}) -> Procura todas as entradas no dataset para o id passado
+    db.<dataset>.findOne({_id:<id>}) -> Procura uma entrada no dataset para o id passado
+    db.<dataset>.insert({_id:<id>,nome:<nome>}) -> Insere uma entrada no dataset com o id e nome passados
+
+
+API REST COMMANDS: 	
+    GET /users -> lista todos os users
+    GET /users/key -> lista o user correspondente a essa key
+    POST /users -> inserção de um user (informação do mesmo vai no body)
+    PUT /users/key -> alteração do user correspondente a essa key (informação a ser alterada vai no body)
+    DELETE /users/key -> apaga o user correspondente a essa key
